@@ -51,3 +51,39 @@ func TestEachMapOrdered(t *testing.T) {
 		v++
 	}
 }
+
+func TestKeys(t *testing.T) {
+	m := map[int]string{
+		1: "one",
+		2: "two",
+		3: "three",
+		4: "four",
+	}
+
+	keys := Keys(m)
+
+	assert.Equal(t, len(m), len(keys))
+	v := 1
+	for i := 0; i < len(m); i++ {
+		assert.Equal(t, v, keys[i])
+		v++
+	}
+}
+
+func TestKeysOrdered(t *testing.T) {
+	m := map[int]string{
+		1: "one",
+		4: "four",
+		3: "three",
+		2: "two",
+	}
+
+	keys := KeysOrdered(m)
+
+	assert.Equal(t, len(m), len(keys))
+	v := 1
+	for i := 0; i < len(m); i++ {
+		assert.Equal(t, v, keys[i])
+		v++
+	}
+}

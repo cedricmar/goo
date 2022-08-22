@@ -1,6 +1,7 @@
 package goo
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,38 +18,23 @@ func TestEachInt(t *testing.T) {
 	assert.Equal(t, is, col)
 }
 
-func TestKeys(t *testing.T) {
-	m := map[int]string{
-		1: "one",
-		2: "two",
-		3: "three",
-		4: "four",
-	}
+func TestMap(t *testing.T) {
+	is := []int{1, 2, 3, 4}
 
-	keys := Keys(m)
+	Map(is, func(el int) int {
+		return el * 2
+	})
 
-	assert.Equal(t, len(m), len(keys))
-	v := 1
-	for i := 0; i < len(m); i++ {
-		assert.Equal(t, v, keys[i])
-		v++
+	for i := 0; i < len(is); i++ {
+		assert.Equal(t, (i+1)*2, is[i])
 	}
 }
 
-func TestKeysOrdered(t *testing.T) {
-	m := map[int]string{
-		1: "one",
-		4: "four",
-		3: "three",
-		2: "two",
-	}
+func TestClone(t *testing.T) {
+	s := []string{"one", "two", "three"}
 
-	keys := KeysOrdered(m)
+	cl := Clone(s)
 
-	assert.Equal(t, len(m), len(keys))
-	v := 1
-	for i := 0; i < len(m); i++ {
-		assert.Equal(t, v, keys[i])
-		v++
-	}
+	assert.Equal(t, s, cl)
+	assert.NotEqual(t, fmt.Sprintf("%p", s), fmt.Sprintf("%p", cl))
 }
