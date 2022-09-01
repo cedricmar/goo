@@ -19,3 +19,7 @@ type Float interface {
 type Ordered interface {
 	Integer | Float | ~string
 }
+
+type Scalar interface {
+	Ordered | bool
+}

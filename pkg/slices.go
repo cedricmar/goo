@@ -20,3 +20,35 @@ func Clone[T any](s []T) []T {
 	copy(c, s)
 	return c
 }
+
+// Unique removes identical elements from a slice
+func Unique[T Scalar](s []T) []T {
+	u := LookupTable(s)
+	return Keys(u)
+}
+
+// LookupTable inserts slice elements as keys in a map
+func LookupTable[T Scalar](s []T) map[T]struct{} {
+	lt := map[T]struct{}{}
+	Each(s, func(el T, i int, s []T) {
+		lt[el] = struct{}{}
+	})
+	return lt
+}
+
+// FoundAt returns the index of the found element in a slice s or -1
+// It also returns a boolean to indicate if the element k was found
+func FoundAt[T comparable](k T, s []T) (int, bool) {
+	for i, el := range s {
+		if k == el {
+			return i, true
+		}
+	}
+	return -1, false
+}
+
+// FoundIn returns a boolean if the element k was found in the slice s
+func FoundIn[T comparable](k T, s []T) bool {
+	_, f := FoundAt(k, s)
+	return f
+}

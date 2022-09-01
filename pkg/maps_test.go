@@ -65,7 +65,7 @@ func TestKeys(t *testing.T) {
 	assert.Equal(t, len(m), len(keys))
 	v := 1
 	for i := 0; i < len(m); i++ {
-		assert.Equal(t, v, keys[i])
+		assert.True(t, FoundIn(v, keys))
 		v++
 	}
 }
