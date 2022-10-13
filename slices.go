@@ -21,14 +21,14 @@ func Clone[T any](s []T) []T {
 	return c
 }
 
-<<<<<<< HEAD
 func Index[K comparable, T any](s []T, fn func(el T) K) map[K]T {
 	m := make(map[K]T)
 	for _, el := range s {
 		m[fn(el)] = el
 	}
 	return m
-=======
+}
+
 // Unique removes identical elements from a slice
 func Unique[T Scalar](s []T) []T {
 	u := LookupTable(s)
@@ -59,5 +59,4 @@ func FoundAt[T comparable](k T, s []T) (int, bool) {
 func FoundIn[T comparable](k T, s []T) bool {
 	_, f := FoundAt(k, s)
 	return f
->>>>>>> 479cfd1ddac7089916d6018acf09a697ef3175be
 }
