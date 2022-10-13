@@ -20,3 +20,11 @@ func Clone[T any](s []T) []T {
 	copy(c, s)
 	return c
 }
+
+func Index[K comparable, T any](s []T, fn func(el T) K) map[K]T {
+	m := make(map[K]T)
+	for _, el := range s {
+		m[fn(el)] = el
+	}
+	return m
+}

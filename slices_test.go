@@ -38,3 +38,23 @@ func TestClone(t *testing.T) {
 	assert.Equal(t, s, cl)
 	assert.NotEqual(t, fmt.Sprintf("%p", s), fmt.Sprintf("%p", cl))
 }
+
+func TestIndex(t *testing.T) {
+	s := []struct {
+		id   int
+		name string
+	}{
+		{id: 1, name: "one"},
+		{id: 2, name: "two"},
+		{id: 3, name: "three"},
+	}
+
+	m := Index(s, func(el struct {
+		id   int
+		name string
+	}) int {
+		return el.id
+	})
+
+	assert.Equal(t, KeysOrdered(m), []int{1, 2, 3})
+}
