@@ -18,7 +18,7 @@ func EachMapOrdered[U Ordered, T any](m map[U]T, fn func(el T, k U, m map[U]T)) 
 }
 
 // Keys collects the map keys
-func Keys[U Ordered, T any](m map[U]T) (ks []U) {
+func Keys[U Scalar, T any](m map[U]T) (ks []U) {
 	for k := range m {
 		ks = append(ks, k)
 	}

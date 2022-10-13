@@ -1,6 +1,7 @@
 package goo
 
 import (
+	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -61,6 +62,9 @@ func TestKeys(t *testing.T) {
 	}
 
 	keys := Keys(m)
+
+	// Sorting to help the testing
+	sort.IntSlice(keys).Sort()
 
 	assert.Equal(t, len(m), len(keys))
 	v := 1

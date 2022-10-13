@@ -20,6 +20,6 @@ type Ordered interface {
 	Integer | Float | ~string
 }
 
-type Keyed interface {
-	Ordered
+type Scalar interface {
+	Ordered | bool
 }
