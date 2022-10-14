@@ -9,7 +9,7 @@ func EachMap[U Ordered, T any](m map[U]T, fn func(el T, k U, m map[U]T)) {
 	}
 }
 
-// EachMapOrder loops through a map, order
+// EachMapOrder loops through a map in the keys alphanumeric order
 func EachMapOrdered[U Ordered, T any](m map[U]T, fn func(el T, k U, m map[U]T)) {
 	ks := KeysOrdered(m)
 	for k := range ks {

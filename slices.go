@@ -7,7 +7,7 @@ func Each[T any](s []T, fn func(el T, i int, s []T)) {
 	}
 }
 
-// Map each values through a modifier (func)
+// Map each values through a modifier
 func Map[T any](s []T, fn func(el T) T) {
 	for i, el := range s {
 		s[i] = fn(el)
