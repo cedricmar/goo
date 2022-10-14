@@ -21,27 +21,16 @@ func Clone[T any](s []T) []T {
 	return c
 }
 
-func Index[K comparable, T any](s []T, fn func(el T) K) map[K]T {
-	m := make(map[K]T)
-	for _, el := range s {
-		m[fn(el)] = el
-	}
-	return m
-}
-
 // Unique removes identical elements from a slice
 func Unique[T Scalar](s []T) []T {
 	u := LookupTable(s)
 	return Keys(u)
 }
 
-// LookupTable inserts slice elements as keys in a map
-func LookupTable[T Scalar](s []T) map[T]struct{} {
-	lt := map[T]struct{}{}
-	Each(s, func(el T, i int, s []T) {
-		lt[el] = struct{}{}
-	})
-	return lt
+// FoundIn returns a boolean if the element k was found in the slice s
+func FoundIn[T comparable](k T, s []T) bool {
+	_, f := FoundAt(k, s)
+	return f
 }
 
 // FoundAt returns the index of the found element in a slice s or -1
@@ -55,8 +44,20 @@ func FoundAt[T comparable](k T, s []T) (int, bool) {
 	return -1, false
 }
 
-// FoundIn returns a boolean if the element k was found in the slice s
-func FoundIn[T comparable](k T, s []T) bool {
-	_, f := FoundAt(k, s)
-	return f
+// Index turns a slice into a map using a function on each slice element to infer its key
+func Index[K comparable, T any](s []T, fn func(el T) K) map[K]T {
+	m := make(map[K]T)
+	for _, el := range s {
+		m[fn(el)] = el
+	}
+	return m
+}
+
+// LookupTable inserts slice elements as keys in the returned map
+func LookupTable[T Scalar](s []T) map[T]struct{} {
+	lt := map[T]struct{}{}
+	Each(s, func(el T, i int, s []T) {
+		lt[el] = struct{}{}
+	})
+	return lt
 }
