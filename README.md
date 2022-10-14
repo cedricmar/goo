@@ -6,10 +6,29 @@ GOo aims to port javascript's underscore functionnalities in Golang, because rei
 
 Since it uses generics it is really simple to use.
 
-[Custom foo description](#Each\(\))
+## Functions
 
-[Custom foo description](#EachMap())
+[Each()](#each)
 
+[EachMap()](#eachmap)
+
+[EachMapOrder()](#eachmaporder)
+
+[Map()](#map)
+
+[Keys() / KeysOrdered()](#keys--keysordered)
+
+[Clone()](#clone)
+
+[Unique()](#unique)
+
+[FoundIn()](#foundin)
+
+[FoundAt()](#foundat)
+
+[Index()](#index)
+
+[LookupTable()](#lookuptable)
 
 ## Each()
 
