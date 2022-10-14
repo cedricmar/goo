@@ -6,12 +6,12 @@ GOo aims to port javascript's underscore functionnalities in Golang, because rei
 
 Since it uses generics it is really simple to use.
 
-[Custom foo description](#Each)
+[Custom foo description](#Each\(\))
 
 [Custom foo description](#EachMap())
 
 
-## Each
+## Each()
 
 **Each** loops through a slice of \<any> type.
 
