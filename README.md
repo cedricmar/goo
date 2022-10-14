@@ -4,13 +4,11 @@
 
  GOo aims to port javascript's underscore functionnalities in Golang, because reinventing the wheel all the time is no fun :(
 
-## Functions Description
-
-### Each()
+## Each()
 
 **Each** loops through a slice of \<any> type.
 
-#### Example:
+### Example:
 
 ```
 sl := []int{1, 2, 3}
@@ -31,11 +29,11 @@ The function ```func(el T, i int, s []T) {}``` is common modifier pattern for sl
 
 ```s []T``` is the slice itself.
 
-### EachMap()
+## EachMap()
 
 **EachMap** loops through a map, order is not guaranteed.
 
-#### Example:
+### Example:
 
 ```
 IncrementFunc := func(el int, k string, m map[string]int) {
@@ -47,6 +45,6 @@ EachMap(myMap, IncrementFunc)
 
 the function ```func(el T, k U, m map[U]T)``` is the equivalent of the slices modifier function for maps.
 
-### EachMapOrder()
+## EachMapOrder()
 
 Same as **EachMap** but loops using the keys alphanumeric order
