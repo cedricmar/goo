@@ -14,6 +14,15 @@ func Map[T any](s []T, fn func(el T) T) {
 	}
 }
 
+// Reduce makes a slice into a single value
+func Reduce[T, U any](s []T, fn func(mem U, el T) U) U {
+	var mem U
+	for _, el := range s {
+		mem = fn(mem, el)
+	}
+	return mem
+}
+
 // Clone a slice
 func Clone[T any](s []T) []T {
 	c := make([]T, len(s), cap(s))

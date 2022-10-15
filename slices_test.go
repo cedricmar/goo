@@ -2,6 +2,7 @@ package goo
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -28,6 +29,37 @@ func TestMap(t *testing.T) {
 	for i := 0; i < len(is); i++ {
 		assert.Equal(t, (i+1)*2, is[i])
 	}
+}
+
+func TestReduceInt(t *testing.T) {
+	is := []int{1, 2, 3, 4, 5}
+
+	sum := Reduce(is, func(mem, el int) int {
+		return mem + el
+	})
+
+	assert.Equal(t, 15, sum)
+}
+
+func TestReduceString(t *testing.T) {
+	ss := []string{"a", "b", "c", "d"}
+
+	str := Reduce(ss, func(mem, el string) string {
+		return mem + el
+	})
+
+	assert.Equal(t, "abcd", str)
+}
+
+func TestReduceStringInt(t *testing.T) {
+	ss := []string{"1", "2", "3", "4"}
+
+	sum := Reduce(ss, func(mem int, el string) int {
+		n, _ := strconv.Atoi(el)
+		return mem + n
+	})
+
+	assert.Equal(t, 10, sum)
 }
 
 func TestClone(t *testing.T) {

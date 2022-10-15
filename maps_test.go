@@ -2,6 +2,7 @@ package goo
 
 import (
 	"sort"
+	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -90,4 +91,15 @@ func TestKeysOrdered(t *testing.T) {
 		assert.Equal(t, v, keys[i])
 		v++
 	}
+}
+
+func TestReduceMap(t *testing.T) {
+	m := map[string]int{"1": 1, "2": 2, "3": 3, "4": 4}
+
+	sum := ReduceMap(m, func(mem float64, k string, el int) float64 {
+		ik, _ := strconv.Atoi(k)
+		return mem + float64(ik+el)
+	})
+
+	assert.Equal(t, 20., sum)
 }

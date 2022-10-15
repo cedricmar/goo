@@ -16,6 +16,10 @@ Since it uses generics it is really simple to use.
 
 [Map()](#map)
 
+[Reduce()](#reduce)
+
+[ReduceMap()](#reducemap)
+
 [Keys() / KeysOrdered()](#keys--keysordered)
 
 [Clone()](#clone)
@@ -80,6 +84,18 @@ Same as **EachMap** but loops using the keys alphanumeric order.
 Map each values of a slice through a modifier.
 
 ```func Map(s []T, fn func(el T) T)```
+
+## Reduce()
+
+Makes a slice into a single value.
+
+```func Reduce(s []T, fn func(mem U, el T) U) U```
+
+## ReduceMap()
+
+Makes a map into a single value.
+
+```func ReduceMap(m map[U]T, fn func(mem V, k U, el T) V) V```
 
 ## Keys() / KeysOrdered()
 

@@ -33,3 +33,12 @@ func KeysOrdered[U Ordered, T any](m map[U]T) []U {
 	})
 	return ks
 }
+
+// ReduceMap makes a map into a single value
+func ReduceMap[U Ordered, T any, V any](m map[U]T, fn func(mem V, k U, el T) V) V {
+	var mem V
+	for k, el := range m {
+		mem = fn(mem, k, el)
+	}
+	return mem
+}
