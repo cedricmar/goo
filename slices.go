@@ -36,15 +36,36 @@ func Unique[T Scalar](s []T) []T {
 	return Keys(u)
 }
 
+// Find the first "true" element from the test function
+func Find[T any](s []T, fn func(el T) bool) (r T) {
+	for _, el := range s {
+		if fn(el) {
+			return el
+		}
+	}
+	return r
+}
+
+// Filter returns a new slice with the "true" elements from the filter function
+func Filter[T any](s []T, fn func(el T) bool) []T {
+	var r []T
+	for _, el := range s {
+		if fn(el) {
+			r = append(r, el)
+		}
+	}
+	return r
+}
+
 // FoundIn returns a boolean if the element k was found in the slice s
-func FoundIn[T comparable](k T, s []T) bool {
-	_, f := FoundAt(k, s)
+func FoundIn[T comparable](s []T, k T) bool {
+	_, f := FoundAt(s, k)
 	return f
 }
 
 // FoundAt returns the index of the found element in a slice s or -1
 // It also returns a boolean to indicate if the element k was found
-func FoundAt[T comparable](k T, s []T) (int, bool) {
+func FoundAt[T comparable](s []T, k T) (int, bool) {
 	for i, el := range s {
 		if k == el {
 			return i, true

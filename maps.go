@@ -42,3 +42,23 @@ func ReduceMap[U Ordered, T any, V any](m map[U]T, fn func(mem V, k U, el T) V) 
 	}
 	return mem
 }
+
+// FilterMap returns a new map with the "true" elements from the filter function
+func FilterMap[U Ordered, T any](m map[U]T, fn func(k U, el T) bool) map[U]T {
+	r := map[U]T{}
+	for k, el := range m {
+		if fn(k, el) {
+			r[k] = el
+		}
+	}
+	return r
+}
+
+// CloneMap allocates a copy of the given map
+func CloneMap[U Ordered, T any](m map[U]T) map[U]T {
+	r := map[U]T{}
+	for k, el := range m {
+		r[k] = el
+	}
+	return r
+}

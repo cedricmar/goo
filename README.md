@@ -24,7 +24,15 @@ Since it uses generics it is really simple to use.
 
 [Clone()](#clone)
 
+[CloneMap()](#clonemap)
+
 [Unique()](#unique)
+
+[Find](#find)
+
+[Filter](#filter)
+
+[FilterMap()](#filtermap)
 
 [FoundIn()](#foundin)
 
@@ -109,16 +117,39 @@ If you need the keys ordered use **KeysOrdered**.
 
 ## Clone()
 
-Makes a copy of a slice and returns it.
+Allocates a copy of the given slice and returns it.
 
 ```func Clone(s []T) []T```
 
+## CloneMap()
+
+Allocates a copy of the given map and returns it.
+
+```func CloneMap(m map[U]T) map[U]T```
 
 ## Unique()
 
 Removes identical elements from a slice.
 
 ```func Unique(s []T) []T```
+
+## Find()
+
+Returns the first "true" element from the test function.
+
+```func Find(s []T, fn func(el T) bool) (r T)```
+
+## Filter()
+
+Returns a new slice with the "true" elements from the filter function.
+
+```func Filter(s []T, fn func(el T) bool) []T```
+
+## FilterMap()
+
+Returns a new map with the "true" elements from the filter function.
+
+```func FilterMap(m map[U]T, fn func(k U, el T) bool) map[U]T```
 
 ## FoundIn()
 

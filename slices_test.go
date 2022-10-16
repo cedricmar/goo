@@ -71,6 +71,52 @@ func TestClone(t *testing.T) {
 	assert.NotEqual(t, fmt.Sprintf("%p", s), fmt.Sprintf("%p", cl))
 }
 
+func TestUnique(t *testing.T) {
+	s := []int{1, 1, 2, 3, 1, 4, 3, 3, 4}
+	u := Unique(s)
+
+	assert.ElementsMatch(t, []int{1, 2, 3, 4}, u)
+}
+
+func TestFind(t *testing.T) {
+	s := []int{2, 4, 6, 15, 3, 7}
+	Odd := func(el int) bool {
+		return el%2 != 0
+	}
+	f := Find(s, Odd)
+
+	assert.Equal(t, 15, f)
+}
+
+func TestFilter(t *testing.T) {
+	s := []int{2, 4, 6, 1, 3, 7}
+	Even := func(el int) bool {
+		return el%2 == 0
+	}
+	f := Filter(s, Even)
+
+	assert.ElementsMatch(t, []int{2, 4, 6}, f)
+}
+
+func TestFoundIn(t *testing.T) {
+	s := []int{1, 2, 3, 4, 5, 6}
+	fnd := FoundIn(s, 4)
+
+	assert.True(t, fnd)
+}
+
+func TestFoundAt(t *testing.T) {
+	s := []int{1, 2, 3, 4, 5, 6}
+	for k, v := range s {
+		i, fnd := FoundAt(s, v)
+		assert.Equal(t, k, i)
+		assert.True(t, fnd)
+	}
+	i, fnd := FoundAt(s, 7)
+	assert.Equal(t, -1, i)
+	assert.False(t, fnd)
+}
+
 func TestIndex(t *testing.T) {
 	s := []struct {
 		id   int

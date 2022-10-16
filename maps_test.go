@@ -1,6 +1,7 @@
 package goo
 
 import (
+	"fmt"
 	"sort"
 	"strconv"
 	"testing"
@@ -102,4 +103,27 @@ func TestReduceMap(t *testing.T) {
 	})
 
 	assert.Equal(t, 20., sum)
+}
+
+func TestFilterMap(t *testing.T) {
+	m := map[string]int{"1": 1, "2": 2, "3": 3, "4": 4}
+	Odd := func(k string, el int) bool {
+		return el%2 != 0
+	}
+	m2 := FilterMap(m, Odd)
+
+	assert.Len(t, m2, len(m)/2)
+	for _, el := range m2 {
+		assert.True(t, el%2 != 0)
+	}
+	assert.NotEqual(t, fmt.Sprintf("%p", m), fmt.Sprintf("%p", m2))
+}
+
+func TestCloneMap(t *testing.T) {
+	m := map[string]bool{"one": true}
+	m2 := CloneMap(m)
+
+	assert.Len(t, m2, len(m))
+	assert.Equal(t, m["one"], m2["one"])
+	assert.NotEqual(t, fmt.Sprintf("%p", m), fmt.Sprintf("%p", m2))
 }
