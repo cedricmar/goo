@@ -28,9 +28,9 @@ Since it uses generics it is really simple to use.
 
 [Unique()](#unique)
 
-[Find](#find)
+[Find()](#find)
 
-[Filter](#filter)
+[Filter()](#filter)
 
 [FilterMap()](#filtermap)
 
